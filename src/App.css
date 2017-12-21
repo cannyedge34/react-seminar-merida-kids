@@ -10,3 +10,25 @@
   font-weight: bold;
 }
 
+.App button {
+  background-color: red;
+  color: white;
+  font: inhet;
+  border: 1px solid red;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.App button:hover {
+  background-color: coral;
+  color: black;
+}
+
+.App button.Green {
+  background-color: green;
+}
+
+.App button.Green:hover {
+  background-color: Aquamarine;
+  color: black;
+}

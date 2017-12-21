@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import Radium, { StyleRoot } from 'radium';
-import './Person/Person.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -47,20 +45,8 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: 'red',
-      color: 'white',
-      font: 'inhet',
-      border: '1px solid red',
-      padding: '6px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'coral',
-        color: 'black'
-      }
-    };
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -79,35 +65,29 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'green';
-      style[':hover'] = {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      };
+      btnClass = classes.Green;
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('green'); //classes = ['green']
+      assignedClasses.push(classes.red); //classes = ['green']
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); //classes = ['green', 'bold']
+      assignedClasses.push(classes.bold); //classes = ['green', 'bold']
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi there!</h1>
-          <p className={classes.join(' ')}>It does work</p>
-          <button style={style} onClick={this.togglePersonHandler}>
-            Toggle Persons
-          </button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className={classes.App}>
+        <h1>Hi there!</h1>
+        <p className={assignedClasses.join(' ')}>It does work</p>
+        <button className={btnClass} onClick={this.togglePersonHandler}>
+          Toggle Persons
+        </button>
+        {persons}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
