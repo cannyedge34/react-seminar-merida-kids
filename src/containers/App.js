@@ -1,19 +1,64 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-class App extends Component {
-  state = {
-    persons: [
-      { id: '1', name: 'Max', age: 24 },
-      { id: '2', name: 'John', age: 26 },
-      { id: '3', name: 'Albert', age: 42 }
-    ],
-    otherState: 'other value',
-    showPersons: false
-  };
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] inside constructor');
+    this.state = {
+      persons: [
+        { id: '1', name: 'Max', age: 24 },
+        { id: '2', name: 'John', age: 26 },
+        { id: '3', name: 'Albert', age: 42 }
+      ],
+      otherState: 'other value',
+      showPersons: false
+    };
+  }
+
+  componentWillMount() {
+    console.log('[App.js] inside componentWillMount()');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] inside componentDidMount()');
+  }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(
+  //     '[UPDATE App.js] inside shouldComponentUpdate()',
+  //     nextProps,
+  //     nextState
+  //   );
+  //   return (
+  //     nextState.persons !== this.state.persons ||
+  //     nextState.showPersons !== this.state.showPersons
+  //   );
+  // }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(
+      '[UPDATE App.js] inside componentWillUpdate()',
+      nextProps,
+      nextState
+    );
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] inside componentDidUpdate()');
+  }
+
+  // state = {
+  //   persons: [
+  //     { id: '1', name: 'Max', age: 24 },
+  //     { id: '2', name: 'John', age: 26 },
+  //     { id: '3', name: 'Albert', age: 42 }
+  //   ],
+  //   otherState: 'other value',
+  //   showPersons: false
+  // };
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -47,6 +92,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('[App.js] inside render()');
     let persons = null;
 
     if (this.state.showPersons) {
@@ -63,6 +109,15 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        <button
+          onClick={() => {
+            this.setState({
+              showPersons: true
+            });
+          }}
+        >
+          Show Persons
+        </button>
         <Cockpit
           appTitle={this.props.title}
           showPersons={this.state.showPersons}
