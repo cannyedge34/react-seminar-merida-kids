@@ -6,7 +6,7 @@
   font-weight: bold;
 }
 
-.Cockpit button {
+.Button {
   background-color: red;
   color: white;
   font: inhet;
@@ -15,17 +15,16 @@
   cursor: pointer;
 }
 
-.Cockpit button:hover {
+.Button:hover {
   background-color: coral;
   color: black;
 }
 
-.Cockpit button.Green {
+.Button.Green {
   background-color: green;
 }
 
-.Cockpit button.Green:hover {
+.Button.Green:hover {
   background-color: Aquamarine;
   color: black;
 }
-
